@@ -1,0 +1,25 @@
+"centers": [{
+	"id": "cent1",
+	"name": "Center 1",
+	"mean": 80,
+	"median": 82
+},{
+	"id": "cent2",
+	"name": "Center 2",
+	"mean": 30,
+	"median": 32
+},{
+	"id": "cent3",
+	"name": "Center 3",
+	"mean": 50,
+	"median": 42
+},{
+	"id": "cent4",
+	"name": "Center 4",
+	"mean": 10,
+	"median": 12
+}],
+"total": {
+	"mean": 50,
+	"median": 48
+}		
