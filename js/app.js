@@ -6,7 +6,7 @@ angular.module('app', []).
 			when('/fitness', {templateUrl: 'partials/fitness.html'}).
 			when('/reading', {templateUrl: 'partials/reading.html'}).
 			when('/math', {templateUrl: 'partials/math.html'}).
-			otherwise({redirectTo: '/login', templateUrl: 'partials/login.html'});
+			otherwise({redirectTo: '/login', templateUrl: 'partials/login.html', controller: LoginCtrl});
 	});
 
 function MainCtrl($scope, $location, $http) {
@@ -32,4 +32,24 @@ function MainCtrl($scope, $location, $http) {
 		}
 	};
 
+}
+
+function LoginCtrl($scope, $http) {
+
+	$scope.doLogin = function () {
+		$http({method: 'GET', url: 'json/test/login.json'}).
+			success(function(data, status, headers, config) {
+				if (data.username == $scope.username && data.password == $scope.password) {
+					$scope.invalid = false;
+					$scope.setRoute('home');
+				}
+				else {
+					$scope.invalid = true;
+					$scope.message = "Invalid username or password";
+				}
+			}).
+			error(function(data, status, headers, config) {
+				$scope.setRoute('attendance');
+			});
+	};
 }
