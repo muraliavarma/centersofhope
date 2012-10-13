@@ -1,8 +1,53 @@
 <div class="row">
-	<pie-chart class="span8" title="Enrollment Data" width="600" height="400"/>
-	</pie-chart>
-	<div class="span4"/>
+	<div class="span4">
+		<form class="form-horizontal">
+			<legend>
+				Filters
+			</legend>
+			<div class="control-group">
+				<label class="control-label app-control-label">Select Quarter</label>
+				<div class="controls app-controls">
+					<select class="span2" ng-model="quarter" ng-options="q for q in quarters">
+					</select>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label app-control-label">Select Week</label>
+				<div class="controls app-controls">
+					<select class="span2" ng-model="week" ng-options="w for w in weeks">
+					</select>
+				</div>
+			</div>
+			<!-- <span class="help-block">
+				<i>Selected date range is {{fromDate}} to {{toDate}}</i>
+			</span> -->
+			<div class="control-group">
+				<label class="control-label app-control-label">Select Region</label>
+				<div class="controls app-controls">
+					<select class="span2" ng-model="region">
+					</select>
+				</div>
+			</div>
+			<div class="form-actions app-form-actions">
+				<button type="submit" class="btn btn-primary">Go</button>
+				<button type="button" class="btn">Reset</button>
+			</div>
+		</form>
+	</div>
+	<div class="span8">
+		<legend>
+			Enrollment Data
+		</legend>
+		<pie-chart height="400" width="600"/>
+		</pie-chart>
+	</div>
 </div>
-<combo-chart title="Weekly Attendance" rows="data" width="800" height="400"
-			 vaxis="Attendance" haxis="Center"/>
+<div class="row">
+	<div class="span12">
+		<legend>
+			Weekly Attendance
+		</legend>
+	<combo-chart rows="data" height="400" width="800"
+		vaxis="Attendance" haxis="Center"/>
 </combo-chart>
+</div>

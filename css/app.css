@@ -9,3 +9,15 @@ body {
 .login-form {
 	margin-top: 100px;
 }
+
+.app-control-label {
+	width: 90px !important;
+}
+
+.app-controls {
+	margin-left: 110px !important;
+}
+
+.app-form-actions {
+	padding-left: 0px !important;
+}

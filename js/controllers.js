@@ -3,8 +3,8 @@ var app = angular.module('app', []);
 //collection of all the controllers used in the application
 
 function MainCtrl($scope, $location, $http) {
-	$scope.loggedIn = true;
-	$scope.currentPage = 'home';
+	$scope.loggedIn = false;
+	$scope.currentPage = 'login';
 
 	$http.get('json/pages.json').success(function (data) {
 		$scope.pages = data;
@@ -43,7 +43,7 @@ function LoginCtrl($scope, $http) {
 		success(function(data, status, headers, config) {
 			if (data.username == $scope.username && data.password == $scope.password) {
 				$scope.$parent.loggedIn = true;
-				$scope.setRoute('home');
+				$scope.setRoute('attendance');
 			}
 			else {
 				$scope.invalid = true;
@@ -62,6 +62,11 @@ function AttendanceCtrl($scope, $http) {
 		['string', 'Center'],
 		['number', 'Enrollment']
 	];
+
+	$scope.quarters = ['Q1', 'Q2', 'Q3', 'Q4'];
+	$scope.weeks = ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10', 'W11', 'W12', 'W13'];
+
+	//set default quarter and week from backend based on current date - TODO
 
 	$scope.getData = function(url) {
 		$http({method: 'GET', url: url}).
