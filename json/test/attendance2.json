@@ -1,0 +1,14 @@
+{
+	"centers": {
+		"header": ["Center", "Mean", "Median", "Enrollment"],
+		"data": [
+			["Cent 1", 80, 82, 60],
+			["Cent 2", 40, 62, 20],
+			["Cent 3", 70, 32, 90],
+			["Cent 4", 10, 92, 40]
+	]},
+	"average": {
+		"mean": 50,
+		"median": 48
+	}
+}

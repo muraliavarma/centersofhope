@@ -1,5 +1,7 @@
 var app = angular.module('app', []);
 
+//collection of all the controllers used in the application
+
 function MainCtrl($scope, $location, $http) {
 	$scope.loggedIn = true;
 	$scope.currentPage = 'home';
@@ -55,15 +57,25 @@ function LoginCtrl($scope, $http) {
 }
 
 function AttendanceCtrl($scope, $http) {
-  $scope.data = [
-    ['Yes', 1],
-    ['No', 1]
-  ];
-  
-  $scope.header = [
-    ['string', 'Answer'],
-    ['number', 'Number']
-  ];
+ 			
+	$scope.pieHeader = [
+		['string', 'Center'],
+		['number', 'Enrollment']
+	];
 
+	$scope.getData = function(url) {
+		$http({method: 'GET', url: url}).
+		success(function(data, status, headers, config) {
+		 	$scope.data = data.centers.data;
+		 	$scope.pieData = [];
+			$scope.data.forEach(function(row){
+				$scope.pieData.push([row[0], row[3]]);
+			});
+
+			$scope.comboData = new google.visualization.arrayToDataTable([data.centers.header].concat(data.centers.data));
+		});
+	}
+
+	$scope.getData('json/test/attendance2.json');
 
 }
