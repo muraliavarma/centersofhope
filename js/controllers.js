@@ -14,10 +14,10 @@ function MainCtrl($scope, $location, $http) {
 
 		if (route == 'login') {
 			//on signout, do stuff - TODO
-			this.loggedIn = false;
+			$scope.loggedIn = false;
 		}
 
-		if (!$scope.loggedIn) {
+		else if (!$scope.loggedIn) {
 			//if we are not logged in, then always go to the login page - TODO since setRoute() is not called on first load
 			route = 'login';
 		}
@@ -43,7 +43,7 @@ function LoginCtrl($scope, $http) {
 		success(function(data, status, headers, config) {
 			if (data.username == $scope.username && data.password == $scope.password) {
 				$scope.$parent.loggedIn = true;
-				$scope.setRoute('attendance');
+				$scope.setRoute('home');
 			}
 			else {
 				$scope.invalid = true;
@@ -51,7 +51,7 @@ function LoginCtrl($scope, $http) {
 			}
 		}).
 		error(function(data, status, headers, config) {
-			$scope.setRoute('attendance');
+			$scope.setRoute('math');
 		});
 	};
 }
@@ -65,6 +65,7 @@ function AttendanceCtrl($scope, $http) {
 
 	$scope.quarters = ['Q1', 'Q2', 'Q3', 'Q4'];
 	$scope.weeks = ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10', 'W11', 'W12', 'W13'];
+	$scope.regions = ['Region 1', 'Region 2', 'Region 3', 'Region 4'];
 
 	//set default quarter and week from backend based on current date - TODO
 
@@ -81,6 +82,22 @@ function AttendanceCtrl($scope, $http) {
 		});
 	}
 
-	$scope.getData('json/test/attendance2.json');
+	$scope.getData('json/test/attendance1.json');
+	$scope.currRand = 1;
+
+	$scope.onFilter = function() {
+		var rand = $scope.currRand;
+		while (rand == $scope.currRand) {
+			rand = 1 + Math.floor(Math.random() * 3);
+		}
+		$scope.currRand = rand;
+		$scope.getData('json/test/attendance' + rand + '.json');
+	}
+
+	$scope.onReset = function() {
+		$scope.quarter = "";
+		$scope.week = "";
+		$scope.region = "";
+	}
 
 }

@@ -24,13 +24,13 @@
 			<div class="control-group">
 				<label class="control-label app-control-label">Select Region</label>
 				<div class="controls app-controls">
-					<select class="span2" ng-model="region">
+					<select class="span2" ng-model="region" ng-model="region" ng-options="r for r in regions">>
 					</select>
 				</div>
 			</div>
 			<div class="form-actions app-form-actions">
-				<button type="submit" class="btn btn-primary">Go</button>
-				<button type="button" class="btn">Reset</button>
+				<button type="submit" class="btn btn-primary" ng-click="onFilter()">Go</button>
+				<button type="button" class="btn" ng-click="onReset()">Reset</button>
 			</div>
 		</form>
 	</div>
