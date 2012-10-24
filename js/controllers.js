@@ -7,7 +7,9 @@ function MainCtrl($scope, $location, $http) {
 	$scope.currentPage = 'login';
 
 	$http.get('json/pages.json').success(function (data) {
-		$scope.pages = data;
+		if (!$scope.pages) {
+			$scope.pages = data;
+		}
 	});
 
 	$scope.setRoute = function (route) {

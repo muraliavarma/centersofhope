@@ -66,6 +66,3 @@ app.directive('comboChart', function() {
 });
 
 google.load('visualization', '1.0', {'packages':['corechart']});
-google.setOnLoadCallback(function() {
-	angular.bootstrap(document.body, ['app']);
-});
