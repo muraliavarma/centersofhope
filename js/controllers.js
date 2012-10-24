@@ -72,8 +72,10 @@ function AttendanceCtrl($scope, $http) {
 	//set default quarter and week from backend based on current date - TODO
 
 	$scope.getData = function(url) {
+		$scope.isLoading = true;
 		$http({method: 'GET', url: url}).
 		success(function(data, status, headers, config) {
+			$scope.isLoading = false;
 		 	$scope.data = data.centers.data;
 		 	$scope.pieData = [];
 			$scope.data.forEach(function(row){
@@ -84,16 +86,27 @@ function AttendanceCtrl($scope, $http) {
 		});
 	}
 
-	$scope.getData('json/test/attendance1.json');
+	$scope.getData('http://research.hsi.gatech.edu/centersofhope/attendance.php');
 	$scope.currRand = 1;
 
 	$scope.onFilter = function() {
-		var rand = $scope.currRand;
-		while (rand == $scope.currRand) {
-			rand = 1 + Math.floor(Math.random() * 3);
+		if (!$scope.quarter) {
+			$scope.message = 'Please select a quarter';
+			return;
 		}
-		$scope.currRand = rand;
-		$scope.getData('json/test/attendance' + rand + '.json');
+		
+		if (!$scope.week) {
+			$scope.message = 'Please select a week';
+			return;
+		}
+
+		$scope.message = '';
+
+		$scope.getData('http://research.hsi.gatech.edu/centersofhope/attendance.php?q=' +
+			$scope.quarter.substr(1) +
+			'&w=' +
+			$scope.week.substr(1)
+			);
 	}
 
 	$scope.onReset = function() {

@@ -31,6 +31,10 @@
 			<div class="form-actions app-form-actions">
 				<button type="submit" class="btn btn-primary" ng-click="onFilter()">Go</button>
 				<button type="button" class="btn" ng-click="onReset()">Reset</button>
+				<img ng-src="resources/images/ajax-loader.gif" ng-show="isLoading"/>
+			</div>
+			<div class="alert alert-error" ng-show="message">
+				{{message}}
 			</div>
 		</form>
 	</div>
