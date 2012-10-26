@@ -21,7 +21,7 @@
 				</a>
 				<a class="brand" ng-click="setRoute('home')">After School Program</a>
 				<div class="nav-collapse collapse">
-					<p class="navbar-text pull-right">
+					<p class="navbar-text pull-right" ng-show="loggedIn">
 						<a class="navbar-link" ng-click="setRoute('login')">Sign Out</a>
 					</p>
 					<ul class="nav" ng-show="loggedIn">
