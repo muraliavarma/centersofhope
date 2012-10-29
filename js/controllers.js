@@ -92,18 +92,26 @@ function AttendanceCtrl($scope, $http) {
 	$scope.getData('http://research.hsi.gatech.edu/centersofhope/attendance.php');
 	$scope.currRand = 1;
 
-	$scope.onFilter = function() {
-		if (!$scope.quarter) {
-			$scope.message = 'Please select a quarter';
-			return;
-		}
-		
-		if (!$scope.week) {
-			$scope.message = 'Please select a week';
-			return;
-		}
+	$scope.$watch('quarter', function(val) {
+		$scope.onFilter();
+	});
 
-		$scope.message = '';
+	$scope.$watch('week', function(val) {
+		$scope.onFilter();
+	});
+
+	$scope.onFilter = function() {
+		// if (!$scope.quarter) {
+		// 	$scope.message = 'Please select a quarter';
+		// 	return;
+		// }
+		
+		// if (!$scope.week) {
+		// 	$scope.message = 'Please select a week';
+		// 	return;
+		// }
+
+		// $scope.message = '';
 
 		$scope.getData('http://research.hsi.gatech.edu/centersofhope/attendance.php?q=' +
 			$scope.quarter.substr(1) +
@@ -112,10 +120,10 @@ function AttendanceCtrl($scope, $http) {
 			);
 	}
 
-	$scope.onReset = function() {
-		$scope.quarter = "";
-		$scope.week = "";
-		// $scope.region = "";
-	}
+	// $scope.onReset = function() {
+	// 	$scope.quarter = "";
+	// 	$scope.week = "";
+	// 	// $scope.region = "";
+	// }
 
 }

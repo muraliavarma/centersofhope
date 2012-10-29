@@ -1,23 +1,13 @@
 <div class="row">
-	<div class="span4">
-		<form class="form-horizontal">
-			<legend>
-				Filters
-			</legend>
-			<div class="control-group">
-				<label class="control-label app-control-label">Select Quarter</label>
-				<div class="controls app-controls">
-					<select class="span2" ng-model="quarter" ng-options="q for q in quarters">
-					</select>
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label app-control-label">Select Week</label>
-				<div class="controls app-controls">
-					<select class="span2" ng-model="week" ng-options="w for w in weeks">
-					</select>
-				</div>
-			</div>
+	<div class="span12">
+		<form class="form-inline">
+			<label>Select Quarter</label>
+			<select class="span2" ng-model="quarter" ng-options="q for q in quarters">
+			</select>
+			<label>Select Week</label>
+			<select class="span2" ng-model="week" ng-options="w for w in weeks">
+			</select>
+			<img ng-src="resources/images/ajax-loader.gif" ng-show="isLoading"/>
 			<!-- <span class="help-block">
 				<i>Selected date range is {{fromDate}} to {{toDate}}</i>
 			</span> -->
@@ -28,19 +18,18 @@
 					</select>
 				</div>
 			</div> -->
-			<div class="form-actions app-form-actions">
+			<!-- <div class="form-actions app-form-actions">
 				<button type="submit" class="btn btn-primary" ng-click="onFilter()">Go</button>
 				<button type="button" class="btn" ng-click="onReset()">Reset</button>
-				<img ng-src="resources/images/ajax-loader.gif" ng-show="isLoading"/>
 			</div>
 			<div class="alert alert-error" ng-show="message">
 				{{message}}
-			</div>
+			</div> -->
 		</form>
 	</div>
-	<div class="span8">
+	<div class="span12">
 		<legend>
-			Enrollment Data
+			Enrollment Data for {{quarter}} {{week}}
 		</legend>
 		<pie-chart height="400" width="500"/>
 		</pie-chart>
