@@ -25,3 +25,7 @@ body {
 .app-filter {
 	padding-left: 30px !important;
 }
+
+.app-chart-padding {
+	padding-top: 50px !important;
+}

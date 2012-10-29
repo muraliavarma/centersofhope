@@ -54,14 +54,22 @@ app.directive('comboChart', function() {
 				series: {2: {type: "line"}}
 			};
 			
-			scope.$watch('data', function(rows) {
-				if (!scope.comboData) {
+			scope.$watch(attr.rows, function(rows) {
+				if (!scope[attr.model]) {
 					return;
 				}
-				var data = scope.comboData.clone();
+				var data = scope[attr.model].clone();
 				//data.addRows(rows);
 				chart.draw(data, options);
 			}, true);
+
+			google.visualization.events.addListener(chart, 'select', function(e) {
+				var selection = chart.getSelection();
+				if (selection[0] && selection[0].row >= 0) {
+					// to make sure that we did NOT click a legend
+					scope.selectCombo(selection[0].row, selection[0].column);
+				}
+			});
 		}
 	};
 });
