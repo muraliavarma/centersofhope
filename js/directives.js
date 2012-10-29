@@ -13,7 +13,7 @@ app.directive('pieChart', function() {
 			var options = {
 				title: attr.title,
 				titleTextStyle: {fontName: 'Arial', fontSize: 21},
-				chartArea: {top: 0, height: '100%'},
+				chartArea: {left: 0, top: 0, height: '100%'},
 				legend: {position: 'none'},
 				width: parseInt(attr.width, 10),
 				height: parseInt(attr.height, 10)
