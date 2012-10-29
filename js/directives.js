@@ -63,13 +63,15 @@ app.directive('comboChart', function() {
 				chart.draw(data, options);
 			}, true);
 
-			google.visualization.events.addListener(chart, 'select', function(e) {
-				var selection = chart.getSelection();
-				if (selection[0] && selection[0].row >= 0) {
-					// to make sure that we did NOT click a legend
-					scope.selectCombo(selection[0].row, selection[0].column);
-				}
-			});
+			if (attr.interactable) {
+				google.visualization.events.addListener(chart, 'select', function(e) {
+					var selection = chart.getSelection();
+					if (selection[0] && selection[0].row >= 0) {
+						// to make sure that we did NOT click a legend
+						scope.selectCombo(selection[0].row, selection[0].column);
+					}
+				});
+			}
 		}
 	};
 });

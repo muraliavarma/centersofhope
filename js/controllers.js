@@ -90,7 +90,6 @@ function AttendanceCtrl($scope, $http) {
 	}
 
 	$scope.getData('http://research.hsi.gatech.edu/centersofhope/attendance.php');
-	$scope.currRand = 1;
 
 	$scope.$watch('quarter', function(val) {
 		$scope.onFilter();
@@ -121,8 +120,8 @@ function AttendanceCtrl($scope, $http) {
 	}
 
 	$scope.selectCombo = function(row, column) {
-		$scope.center = $scope.data[row][0];
 		$scope.isLoading = true;
+		$scope.center = $scope.data[row][0];
 
 		$http({method: 'GET', url: 'http://research.hsi.gatech.edu/centersofhope/attendance.php?func=centers&name=' + $scope.center}).
 		success(function(data, status, headers, config) {

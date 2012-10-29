@@ -1,12 +1,15 @@
 <div class="span12">
 	<form class="form-inline">
 		<label>Select Quarter: </label>
-		<select class="span2" ng-model="quarter" ng-options="q for q in quarters">
+		<select class="span1" ng-model="quarter" ng-options="q for q in quarters">
 		</select>
 		<label class="app-filter">Select Week: </label>
-		<select class="span2" ng-model="week" ng-options="w for w in weeks">
+		<select class="span1" ng-model="week" ng-options="w for w in weeks">
 		</select>
 		<img ng-src="resources/images/ajax-loader.gif" ng-show="isLoading"/>
+		<div class="help-inline pull-right">
+			Click the bar chart to view weekly progress of individual centers
+		</div>
 		<!-- <span class="help-block">
 			<i>Selected date range is {{fromDate}} to {{toDate}}</i>
 		</span> -->
@@ -38,13 +41,13 @@
 		<legend>
 			Weekly Attendance for {{quarter}}{{week}}
 		</legend>
-	<combo-chart rows="data" model="comboData" height="400" width="700"
+	<combo-chart rows="data" model="comboData" interactable="true" height="400" width="700"
 		vaxis="Attendance" haxis="Center"/>
 	</combo-chart>
 </div>
 <div class="span12 app-chart-padding">
-	<legend>
-		Week by Week Attendance for {{center}}
+	<legend ng-show="center">
+		Week by Week Attendance for this Quarter at {{center}}
 	</legend>
 <combo-chart rows="data2" model="comboData2" height="400" width="900"
 	vaxis="Attendance" haxis="Week"/>
