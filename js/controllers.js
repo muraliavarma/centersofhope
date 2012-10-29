@@ -67,7 +67,9 @@ function AttendanceCtrl($scope, $http) {
 
 	$scope.quarters = ['Q1', 'Q2', 'Q3', 'Q4'];
 	$scope.weeks = ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10', 'W11', 'W12', 'W13'];
-	$scope.regions = ['Region 1', 'Region 2', 'Region 3', 'Region 4'];
+	$scope.quarter = 'Q1';
+	$scope.week = 'W1';
+	// $scope.regions = ['Region 1', 'Region 2', 'Region 3', 'Region 4'];
 
 	//set default quarter and week from backend based on current date - TODO
 
@@ -77,6 +79,7 @@ function AttendanceCtrl($scope, $http) {
 		success(function(data, status, headers, config) {
 			$scope.isLoading = false;
 		 	$scope.data = data.centers.data;
+		 	$scope.data.sort(function (a, b) {return b[3] - a[3]})
 		 	$scope.pieData = [];
 			$scope.data.forEach(function(row){
 				$scope.pieData.push([row[0], row[3]]);
@@ -112,7 +115,7 @@ function AttendanceCtrl($scope, $http) {
 	$scope.onReset = function() {
 		$scope.quarter = "";
 		$scope.week = "";
-		$scope.region = "";
+		// $scope.region = "";
 	}
 
 }

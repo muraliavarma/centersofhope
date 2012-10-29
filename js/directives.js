@@ -14,7 +14,7 @@ app.directive('pieChart', function() {
 				title: attr.title,
 				titleTextStyle: {fontName: 'Arial', fontSize: 21},
 				chartArea: {top: 0, height: '100%'},
-				legend: {alignment: 'center'},
+				legend: {position: 'none'},
 				width: parseInt(attr.width, 10),
 				height: parseInt(attr.height, 10)
 			};
@@ -48,7 +48,7 @@ app.directive('comboChart', function() {
 				width: parseInt(attr.width, 10),
 				height: parseInt(attr.height, 10),
 				vAxis: {title: attr.vaxis},
-				hAxis: {title: attr.haxis},
+				hAxis: {title: attr.haxis, showTextEvery: 1, slantedTextAngle: 45, slantedText: true},
 				seriesType: 'bars',
 				series: {2: {type: "line"}}
 			};
