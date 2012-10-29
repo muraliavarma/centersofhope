@@ -21,3 +21,7 @@ body {
 .app-form-actions {
 	padding-left: 0px !important;
 }
+
+.app-filter {
+	padding-left: 30px !important;
+}

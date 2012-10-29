@@ -45,6 +45,7 @@ app.directive('comboChart', function() {
 			var options = {
 				title: attr.title,
 				titleTextStyle: {fontName: 'Arial', fontSize: 21},
+				legend: {position: 'top'},
 				width: parseInt(attr.width, 10),
 				height: parseInt(attr.height, 10),
 				vAxis: {title: attr.vaxis},
