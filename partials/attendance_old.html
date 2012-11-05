@@ -1,0 +1,54 @@
+<div class="span12">
+	<form class="form-inline">
+		<label>Select Quarter: </label>
+		<select class="span1" ng-model="quarter" ng-options="q for q in quarters">
+		</select>
+		<label class="app-filter">Select Week: </label>
+		<select class="span1" ng-model="week" ng-options="w for w in weeks">
+		</select>
+		<img ng-src="resources/images/ajax-loader.gif" ng-show="isLoading"/>
+		<div class="help-inline pull-right">
+			Click the bar chart to view weekly progress of individual centers
+		</div>
+		<!-- <span class="help-block">
+			<i>Selected date range is {{fromDate}} to {{toDate}}</i>
+		</span> -->
+		<!-- <div class="control-group">
+			<label class="control-label app-control-label">Select Region</label>
+			<div class="controls app-controls">
+				<select class="span2" ng-model="region" ng-model="region" ng-options="r for r in regions">>
+				</select>
+			</div>
+		</div> -->
+		<!-- <div class="form-actions app-form-actions">
+			<button type="submit" class="btn btn-primary" ng-click="onFilter()">Go</button>
+			<button type="button" class="btn" ng-click="onReset()">Reset</button>
+		</div>
+		<div class="alert alert-error" ng-show="message">
+			{{message}}
+		</div> -->
+	</form>
+</div>
+<div class="row">
+	<div class="span4">
+		<legend>
+			Enrollment Data for {{quarter}}{{week}}
+		</legend>
+		<pie-chart height="400" width="400"/>
+		</pie-chart>
+	</div>
+	<div class="span8">
+		<legend>
+			Weekly Attendance for {{quarter}}{{week}}
+		</legend>
+	<combo-chart rows="data" model="comboData" interactable="true" height="400" width="700"
+		vaxis="Attendance" haxis="Center"/>
+	</combo-chart>
+</div>
+<div class="span12 app-chart-padding">
+	<legend ng-show="center">
+		Week by Week Attendance for this Quarter at {{center}}
+	</legend>
+<combo-chart rows="data2" model="comboData2" height="400" width="900"
+	vaxis="Attendance" haxis="Week"/>
+</combo-chart>

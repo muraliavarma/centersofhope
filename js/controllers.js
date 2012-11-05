@@ -58,7 +58,7 @@ function LoginCtrl($scope, $http) {
 	};
 }
 
-function AttendanceCtrl($scope, $http) {
+function AttendanceCtrlOld($scope, $http) {
  			
 	$scope.pieHeader = [
 		['string', 'Center'],
@@ -124,13 +124,13 @@ function AttendanceCtrl($scope, $http) {
 		$scope.center = $scope.data[row][0];
 
 		$http({method: 'GET', url: 'http://research.hsi.gatech.edu/centersofhope/attendance.php?func=centers&name=' + $scope.center}).
-		success(function(data, status, headers, config) {
-			$scope.isLoading = false;
-			$scope.data2 = data.weeks.data;
-			//$scope.data.sort(function (a, b) {return b[3] - a[3]})
+			success(function(data, status, headers, config) {
+				$scope.isLoading = false;
+				$scope.data2 = data.weeks.data;
+				//$scope.data.sort(function (a, b) {return b[3] - a[3]})
 
-			$scope.comboData2 = new google.visualization.arrayToDataTable([data.weeks.header].concat(data.weeks.data));
-		});
+				$scope.comboData2 = new google.visualization.arrayToDataTable([data.weeks.header].concat(data.weeks.data));
+			});
 
 	}
 
@@ -139,5 +139,42 @@ function AttendanceCtrl($scope, $http) {
 	// 	$scope.week = "";
 	// 	// $scope.region = "";
 	// }
+
+}
+
+function AttendanceCtrl($scope, $http) {
+
+	$scope.isLoading = true;
+
+	$http({method: 'GET', url: 'http://research.hsi.gatech.edu/centersofhope/centers.php'}).
+		success(function(data, status, headers, config) {
+			$scope.isLoading = false;
+			$scope.centers = data;
+			if (data && data[0]) {
+				$scope.center = data[0];
+			}
+		});
+
+	$scope.pieHeader = [
+		['string', 'Center'],
+		['number', 'Enrollment']
+	];
+
+	$scope.$watch('center', function(val) {
+		if (val) {
+			$scope.getCenterChart();
+		}
+	});
+
+	$scope.getCenterChart = function() {
+		$scope.isLoading = true;
+		$http({method: 'GET', url: 'http://research.hsi.gatech.edu/centersofhope/attendance.php?func=centers&name=' + $scope.center}).
+			success(function(data, status, headers, config) {
+				$scope.isLoading = false;
+				$scope.data2 = data.weeks.data;
+
+				$scope.comboData2 = new google.visualization.arrayToDataTable([data.weeks.header].concat(data.weeks.data));
+			});
+	}
 
 }
