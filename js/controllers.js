@@ -172,9 +172,29 @@ function AttendanceCtrl($scope, $http) {
 			success(function(data, status, headers, config) {
 				$scope.isLoading = false;
 				$scope.data2 = data.weeks.data;
-
 				$scope.comboData2 = new google.visualization.arrayToDataTable([data.weeks.header].concat(data.weeks.data));
+				if ($scope.data2 && $scope.data2[0]) {
+					$scope.selectCombo(0, 0);
+				}
 			});
+	}
+
+	$scope.selectCombo = function(row, column) {
+		$scope.isLoading = true;
+		$scope.week = $scope.data2[row][0].substr(5);
+
+		$http({method: 'GET', url: 'http://research.hsi.gatech.edu/centersofhope/attendance.php?q=1&w=' + $scope.week}).
+			success(function(data, status, headers, config) {
+				$scope.isLoading = false;
+				$scope.data = data.centers.data;
+			 	$scope.data.sort(function (a, b) {return b[3] - a[3]})
+			 	$scope.pieData = [];
+				$scope.data.forEach(function(row){
+					$scope.pieData.push([row[0], row[3]]);
+				});
+				$scope.comboData = new google.visualization.arrayToDataTable([data.centers.header].concat(data.centers.data));
+			});
+
 	}
 
 }

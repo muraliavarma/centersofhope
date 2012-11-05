@@ -9,26 +9,26 @@
 		</div>
 	</form>
 </div>
-<div class="span12 app-chart-padding">
+<div class="span12">
 	<legend ng-show="center">
 		Week by Week Attendance for this term at {{center}}
 	</legend>
-<combo-chart rows="data2" model="comboData2" height="400" width="900"
+<combo-chart rows="data2" model="comboData2" interactable="true" height="400" width="900"
 	vaxis="Attendance" haxis="Week"/>
 </combo-chart>
-<div class="row">
+<div class="row app-chart-padding">
 	<div class="span4">
 		<legend>
-			Enrollment Data for {{week}}
+			Enrollment Data for Week {{week}}
 		</legend>
 		<pie-chart height="400" width="400"/>
 		</pie-chart>
 	</div>
 	<div class="span8">
 		<legend>
-			Weekly Attendance for {{week}}
+			Weekly Attendance for Week {{week}}
 		</legend>
-	<combo-chart rows="data" model="comboData" interactable="true" height="400" width="700"
+	<combo-chart rows="data" model="comboData" height="400" width="700"
 		vaxis="Attendance" haxis="Center"/>
 	</combo-chart>
 </div>
