@@ -89,8 +89,8 @@ function AttendanceCtrl($scope, $http) {
 				$scope.isLoading = false;
 				$scope.data2 = data.weeks.data;
 				$scope.comboData2 = new google.visualization.arrayToDataTable([data.weeks.header].concat(data.weeks.data));
-				if ($scope.data2 && $scope.data2[0]) {
-					$scope.selectCombo(0, 0);
+				if ($scope.data2 && $scope.data2.length) {
+					$scope.selectCombo($scope.data2.length - 1, 0);	//automatically load the latest week data
 				}
 			});
 	}
