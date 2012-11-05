@@ -48,10 +48,13 @@ app.directive('comboChart', function() {
 				legend: {position: 'top'},
 				width: parseInt(attr.width, 10),
 				height: parseInt(attr.height, 10),
-				vAxis: {title: attr.vaxis},
+				vAxes: [
+					{title: attr.vaxis1},
+					{title: attr.vaxis2}
+					],
 				hAxis: {title: attr.haxis, showTextEvery: 1, slantedTextAngle: 45, slantedText: true},
 				seriesType: 'bars',
-				series: {2: {type: "line"}}
+				series: {2: {type: "line", targetAxisIndex:1}}
 			};
 			
 			scope.$watch(attr.rows, function(rows) {
