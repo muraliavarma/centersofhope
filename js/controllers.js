@@ -75,7 +75,7 @@ function AttendanceCtrl($scope, $http, $routeParams, $location) {
 				console.log('error retrieving center chart data');
 			});
 	}
-	
+
 	if ($routeParams.center) {
 		$scope.center = $routeParams.center;
 		$scope.getCenterChart();
@@ -119,7 +119,13 @@ function AttendanceCtrl($scope, $http, $routeParams, $location) {
 				});
 				$scope.comboData = new google.visualization.arrayToDataTable([data.centers.header].concat(data.centers.data));
 			});
-
 	}
 
+	$scope.print = function(pane) {
+		var element = document.getElementById(pane);
+		var popupWin = window.open('', '_blank', 'width=' + element.offsetWidth + ', height=' + element.offsetHeight);
+		popupWin.document.open();
+		popupWin.document.write('<html><body onload="window.print()">' + element.innerHTML + '</html>');
+		popupWin.print();
+	}
 }
