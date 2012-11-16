@@ -58,29 +58,7 @@ function LoginCtrl($scope, $http) {
 	};
 }
 
-function AttendanceCtrl($scope, $http) {
-
-	$scope.isLoading = true;
-
-	$http({method: 'GET', url: 'http://research.hsi.gatech.edu/centersofhope/centers.php'}).
-		success(function(data, status, headers, config) {
-			$scope.isLoading = false;
-			$scope.centers = data;
-			if (data && data[0]) {
-				$scope.center = data[0];
-			}
-		});
-
-	$scope.pieHeader = [
-		['string', 'Center'],
-		['number', 'Enrollment']
-	];
-
-	$scope.$watch('center', function(val) {
-		if (val) {
-			$scope.getCenterChart();
-		}
-	});
+function AttendanceCtrl($scope, $http, $routeParams, $location) {
 
 	$scope.getCenterChart = function() {
 		$scope.isLoading = true;
@@ -92,8 +70,39 @@ function AttendanceCtrl($scope, $http) {
 				if ($scope.data2 && $scope.data2.length) {
 					$scope.selectCombo($scope.data2.length - 1, 0);	//automatically load the latest week data
 				}
+			}).
+			error(function(data, status, headers, config) {
+				console.log('error retrieving center chart data');
 			});
 	}
+	
+	if ($routeParams.center) {
+		$scope.center = $routeParams.center;
+		$scope.getCenterChart();
+	}
+
+	$scope.isLoading = true;
+	$http({method: 'GET', url: 'http://research.hsi.gatech.edu/centersofhope/centers.php'}).
+		success(function(data, status, headers, config) {
+			$scope.isLoading = false;
+			$scope.centers = data;
+			if (data && data[0] && !$scope.center) {
+				$scope.center = data[0];
+				$scope.getCenterChart();
+			}
+		});
+
+	$scope.pieHeader = [
+		['string', 'Center'],
+		['number', 'Enrollment']
+	];
+
+
+	$scope.$watch('center', function(newVal, oldVal) {
+		if (newVal) {
+			$location.path('attendance/' + newVal);
+		}
+	});
 
 	$scope.selectCombo = function(row, column) {
 		$scope.isLoading = true;
