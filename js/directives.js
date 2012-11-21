@@ -20,9 +20,11 @@ app.directive('pieChart', function() {
 			};
 			
 			var dataMaster = new google.visualization.DataTable();
-			columns.forEach(function(column) {
-				dataMaster.addColumn(column[0], column[1]);
-			});
+			if (columns) {
+				columns.forEach(function(column) {
+					dataMaster.addColumn(column[0], column[1]);
+				});
+			}
 			
 			scope.$watch('pieData', function(rows) {
 				if (!rows) {
