@@ -45,7 +45,7 @@ function LoginCtrl($scope, $http) {
 		success(function(data, status, headers, config) {
 			if (data.username == $scope.username && data.password == $scope.password) {
 				$scope.$parent.loggedIn = true;
-				$scope.setRoute('home');
+				$scope.setRoute('attendance');
 			}
 			else {
 				$scope.invalid = true;

@@ -1,16 +1,7 @@
 [{
-	"id": "home",
-	"name": "Home"
-},{
 	"id": "attendance",
 	"name": "Attendance"
 },{
-	"id": "fitness",
-	"name": "Fitness"
-},{
-	"id": "reading",
-	"name": "Reading"
-},{
-	"id": "math",
-	"name": "Math"
+	"id": "admin",
+	"name": "Admin"
 }]
