@@ -154,3 +154,14 @@ function AttendanceCtrl($scope, $http, $routeParams, $location) {
 		popupWin.print();
 	}
 }
+
+function AdminCtrl($scope, $http, $location) {
+	
+	if (!$scope.loggedIn) {
+		$scope.setRoute('login', $location.path());
+		return;
+	}
+
+	$scope.setActivePage('admin');
+
+}

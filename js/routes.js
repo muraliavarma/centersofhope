@@ -10,7 +10,7 @@ app.config(function($routeProvider) {
 			templateUrl: 'partials/attendance.html', controller: AttendanceCtrl
 		}).
 		when('/admin', {
-			templateUrl: 'partials/admin.html'
+			templateUrl: 'partials/admin.html', controller: AdminCtrl
 		}).
 		otherwise({
 			redirectTo: '/login', templateUrl: 'partials/login.html', controller: LoginCtrl
