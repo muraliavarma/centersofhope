@@ -3,7 +3,7 @@ var app = angular.module('app', []);
 //collection of all the controllers used in the application
 
 function MainCtrl($scope, $location, $http) {
-	$scope.loggedIn = (localStorage.loggedIn == true);
+	$scope.loggedIn = (localStorage.loggedIn == 'true');
 	$scope.currentPage = 'login';
 
 	$http.get('json/pages.json').success(function (data) {
@@ -47,8 +47,6 @@ function LoginCtrl($scope, $http) {
 		success(function(data, status, headers, config) {
 			if (data.username == $scope.username && data.password == $scope.password) {
 				$scope.$parent.loggedIn = true;
-				localStorage.username = data.username;
-				localStorage.password = data.password;
 				localStorage.loggedIn = true;
 				if ($scope.redirectURL) {
 					$scope.setRoute($scope.redirectURL)
