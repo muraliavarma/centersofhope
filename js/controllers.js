@@ -3,7 +3,7 @@ var app = angular.module('app', []);
 //collection of all the controllers used in the application
 
 function MainCtrl($scope, $location, $http) {
-	$scope.loggedIn = false;
+	$scope.loggedIn = (localStorage.loggedIn == true);
 	$scope.currentPage = 'login';
 
 	$http.get('json/pages.json').success(function (data) {
@@ -12,11 +12,13 @@ function MainCtrl($scope, $location, $http) {
 		}
 	});
 
-	$scope.setRoute = function (route) {
+	$scope.setRoute = function (route, redirectURL) {
 
 		if (route == 'login') {
 			//on signout, do stuff - TODO
 			$scope.loggedIn = false;
+			localStorage.loggedIn = false;
+			$scope.redirectURL = redirectURL;
 		}
 
 		else if (!$scope.loggedIn) {
@@ -45,7 +47,15 @@ function LoginCtrl($scope, $http) {
 		success(function(data, status, headers, config) {
 			if (data.username == $scope.username && data.password == $scope.password) {
 				$scope.$parent.loggedIn = true;
-				$scope.setRoute('attendance');
+				localStorage.username = data.username;
+				localStorage.password = data.password;
+				localStorage.loggedIn = true;
+				if ($scope.redirectURL) {
+					$scope.setRoute($scope.redirectURL)
+				}
+				else {
+					$scope.setRoute('attendance');
+				}
 			}
 			else {
 				$scope.invalid = true;
@@ -59,6 +69,11 @@ function LoginCtrl($scope, $http) {
 }
 
 function AttendanceCtrl($scope, $http, $routeParams, $location) {
+
+	if (!$scope.loggedIn) {
+		$scope.setRoute('login', $location.path());
+		return;
+	}
 
 	$scope.getCenterChart = function() {
 		$scope.isLoading = true;
