@@ -56,7 +56,18 @@ app.directive('comboChart', function() {
 					],
 				hAxis: {title: attr.haxis, showTextEvery: 1, slantedTextAngle: 45, slantedText: true},
 				seriesType: 'bars',
-				series: {2: {type: "line", targetAxisIndex:1, pointSize: 2}}
+				series: {
+					2: {
+						type: "line",
+						targetAxisIndex:1,
+						pointSize: 2
+					},
+					3: {
+						type: "line",
+						targetAxisIndex:1,
+						pointSize: 2
+					}
+				}
 			};
 			
 			scope.$watch(attr.rows, function(rows) {
