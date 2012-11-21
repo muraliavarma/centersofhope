@@ -1,8 +1,6 @@
 
 //collection of all directives used in the project
-
 //charts
-
 app.directive('pieChart', function() {
 	return {
 		restrict: 'E',
@@ -93,3 +91,35 @@ app.directive('comboChart', function() {
 });
 
 google.load('visualization', '1.0', {'packages':['corechart']});
+
+//upload file hack since twitter bootstrap makes it look so damn ugly
+app.directive('uploadFile', function() {
+	return {
+		restrict: 'E',
+		template: '<input type="file" style="display:none">' +
+					'<div>' +
+   					'<button type="button" class="btn-small"><i class="icon-upload"></i> Upload</button>' +
+   					'<span>{{path}}<span>' +
+					'</div>',
+		scope: {
+			name: '@name'
+		},
+		link: function(scope, element, attr) {
+			var uploadButton = angular.element(angular.element(element.children()[1]).children()[0]);
+			uploadButton.bind('click', function() {
+				var hiddenFileUpload = element.children()[0];
+				hiddenFileUpload.click();
+				angular.element(hiddenFileUpload).bind('change', function(evt) {
+					var val = evt.target.value;
+					if (val.length > 12) {
+						element.scope().path = val.substr(12);
+					}
+					else {
+						element.scope().path = '';
+					}
+					element.scope().$apply();
+				})
+			});
+		}
+	};
+});
