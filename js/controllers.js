@@ -28,19 +28,29 @@ function MainCtrl($scope, $location, $http) {
 		$location.path(route);
 		$scope.currentPage = route;
 
+		$scope.setActivePage($scope.currentPage);
+
+	};
+
+	$scope.setActivePage = function (currentPage) {
 		for (var i = 0; i < $scope.pages.length; i++) {
 			var page = $scope.pages[i];
-			if (page.id == $scope.currentPage) {
+			if (page.id == currentPage) {
 				page.class = 'active'
 			}
 			else {
 				page.class = '';
 			}
-		}
-	};
+		}		
+	} 
 }
 
 function LoginCtrl($scope, $http) {
+
+	if ($scope.redirectURL) {
+		$scope.invalid = true;
+		$scope.message = "You need to login to access that page";
+	}
 
 	$scope.doLogin = function () {
 		$http({method: 'GET', url: 'json/test/login.json'}).
@@ -49,7 +59,7 @@ function LoginCtrl($scope, $http) {
 				$scope.$parent.loggedIn = true;
 				localStorage.loggedIn = true;
 				if ($scope.redirectURL) {
-					$scope.setRoute($scope.redirectURL)
+					$scope.setRoute($scope.redirectURL);
 				}
 				else {
 					$scope.setRoute('attendance');
@@ -72,6 +82,8 @@ function AttendanceCtrl($scope, $http, $routeParams, $location) {
 		$scope.setRoute('login', $location.path());
 		return;
 	}
+
+	$scope.setActivePage('attendance');
 
 	$scope.getCenterChart = function() {
 		$scope.isLoading = true;
