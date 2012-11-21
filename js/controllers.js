@@ -163,5 +163,16 @@ function AdminCtrl($scope, $http, $location) {
 	}
 
 	$scope.setActivePage('admin');
+	$scope.message = '';
 
+	$http.get('json/admin.json').success(function (data) {
+		if (!$scope.data) {
+			$scope.data = data;
+			$scope.repo = data.repos[0];
+		}
+	});
+
+	$scope.onSubmit = function() {
+		$scope.message = 'File(s) uploaded';
+	}
 }

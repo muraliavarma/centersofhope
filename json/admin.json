@@ -1,0 +1,18 @@
+{
+	"repos": [{
+		"name": "ActiveNet",
+		"uploads": [{
+			"name": "Enrollment",
+			"id": "enrollment"
+			},{
+			"name": "Attendnance",
+			"id": "attendance"
+		}]
+	},{
+		"name": "Thomasville",
+		"uploads": [{
+			"name": "Attendnance",
+			"id": "attendance"
+		}]
+	}]
+}

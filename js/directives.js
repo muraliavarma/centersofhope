@@ -96,21 +96,21 @@ google.load('visualization', '1.0', {'packages':['corechart']});
 app.directive('uploadFile', function() {
 	return {
 		restrict: 'E',
-		template: '<input type="file" style="display:none">' +
+		template: '<input type="file" name="file" id="{{name}}" style="display:none">' +
 					'<div>' +
    					'<button type="button" class="btn-small"><i class="icon-upload"></i> Upload</button>' +
-   					'<span>{{path}}<span>' +
+   					'<span style="padding-left:10px">{{path}}<span>' +
 					'</div>',
 		scope: {
-			name: '@name'
+			name: '@'
 		},
 		link: function(scope, element, attr) {
 			var uploadButton = angular.element(angular.element(element.children()[1]).children()[0]);
 			uploadButton.bind('click', function() {
 				var hiddenFileUpload = element.children()[0];
 				hiddenFileUpload.click();
-				angular.element(hiddenFileUpload).bind('change', function(evt) {
-					var val = evt.target.value;
+				angular.element(hiddenFileUpload).bind('change', function(event) {
+					var val = event.target.value;
 					if (val.length > 12) {
 						element.scope().path = val.substr(12);
 					}

@@ -1,8 +1,24 @@
 <div class="span12">
 	<legend>Administrative Panel</legend>
-	<form action="http://research.hsi.gatech.edu/centersofhope/AttendanceUpload.php" method="post"
-		enctype="multipart/form-data">
-	<upload-file name="asd"></upload-file><br>
-	<button type="submit" class="btn">Submit</button>
+	<form action="http://research.hsi.gatech.edu/centersofhope/AttendanceUpload.php" method="post" target="uploadHack"
+		enctype="multipart/form-data" class="form-horizontal">
+		<div class="control-group">
+			<label class="control-label">Select Repository: </label>
+			<div class="controls">
+				<select class="span3" ng-model="repo" ng-options="r.name for r in data.repos">
+				</select>
+			</div>
+		</div>
+		<div class="control-group" ng-repeat="upload in repo.uploads">
+			<label class="control-label">{{upload.name}}: </label>
+			<div class="controls">
+				<upload-file name="{{upload.id}}"></upload-file><br>
+			</div>
+		</div>
+		<button type="submit" class="btn" ng-submit="onSubmit()">Submit</button>
 	</form>
+	<div class="alert alert-success" ng-show="message">
+		{{message}}
+	</div>
+	<iframe id="uploadHack" style="display:none; width: 10px; height: 10px;"></iframe>
 </div>
