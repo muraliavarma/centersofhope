@@ -5,13 +5,13 @@
 			"name": "Enrollment",
 			"id": "enrollment"
 			},{
-			"name": "Attendnance",
+			"name": "Attendance",
 			"id": "attendance"
 		}]
 	},{
 		"name": "Thomasville",
 		"uploads": [{
-			"name": "Attendnance",
+			"name": "Attendance",
 			"id": "attendance"
 		}]
 	}]
