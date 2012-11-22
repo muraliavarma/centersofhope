@@ -96,7 +96,7 @@ google.load('visualization', '1.0', {'packages':['corechart']});
 app.directive('uploadFile', function() {
 	return {
 		restrict: 'E',
-		template: '<input type="file" name="file" id="{{name}}" style="display:none">' +
+		template: '<input type="file" name="file_{{name}}" id="{{name}}" style="display:none">' +
 					'<div>' +
    					'<button type="button" class="btn-small"><i class="icon-upload"></i> Upload</button>' +
    					'<span style="padding-left:10px">{{path}}<span>' +
