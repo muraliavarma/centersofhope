@@ -5,36 +5,41 @@
 		</select>
 		<img ng-src="resources/images/ajax-loader.gif" ng-show="isLoading"/>
 		<div class="help-inline pull-right">
-			Click the bar chart to view weekly data
+			<a class="btn btn-small" ng-click="print('all')"><i class="icon-print"></i>Print all</a>
 		</div>
 	</form>
 </div>
-<div class="span12" id="pane1">
-	<legend ng-show="center">
-		Week by Week Attendance for this term at {{center}}
-		<a class="btn btn-small" ng-click="print('pane1')"><i class="icon-print"></i></a>
-	</legend>
-	<combo-chart rows="data2" model="comboData2" interactable="true" height="400" width="900"
-		vaxis1="Attendance %" vaxis2="Enrollment" haxis="Week"/>
-	</combo-chart>
-</div>
-<div class="span12">
-	<div class="row app-chart-padding">
-		<div class="span4" id="pane2">
-			<legend>
-				Enrollment Data for Week {{week}}
-				<a class="btn btn-small" ng-click="print('pane2')"><i class="icon-print"></i></a>
-			</legend>
-			<pie-chart height="400" width="400"/>
-			</pie-chart>
+<div id="all">
+	<div class="span12" id="pane1">
+		<legend ng-show="center">
+			Week by Week Attendance for this term at {{center}}
+			<a class="btn btn-small" ng-click="print('pane1')"><i class="icon-print"></i></a>
+		</legend>
+		<div class="help-inline">
+			Click the bar chart to view weekly data
 		</div>
-		<div class="span8" id="pane3">
-			<legend>
-				Weekly Attendance for Week {{week}}
-				<a class="btn btn-small" ng-click="print('pane3')"><i class="icon-print"></i></a>
-			</legend>
-		<combo-chart rows="data" model="comboData" height="400" width="700"
-			vaxis1="Attendance %" vaxis2="Enrollment" haxis="Center"/>
+		<combo-chart rows="data2" model="comboData2" interactable="true" height="400" width="900"
+			vaxis1="Attendance %" vaxis2="Enrollment" haxis="Week"/>
 		</combo-chart>
+	</div>
+	<div class="span12">
+		<div class="row app-chart-padding">
+			<div class="span4" id="pane2">
+				<legend>
+					Enrollment Data for Week {{week}}
+					<a class="btn btn-small" ng-click="print('pane2')"><i class="icon-print"></i></a>
+				</legend>
+				<pie-chart height="400" width="400"/>
+				</pie-chart>
+			</div>
+			<div class="span8" id="pane3">
+				<legend>
+					Weekly Attendance for Week {{week}}
+					<a class="btn btn-small" ng-click="print('pane3')"><i class="icon-print"></i></a>
+				</legend>
+			<combo-chart rows="data" model="comboData" height="400" width="700"
+				vaxis1="Attendance %" vaxis2="Enrollment" haxis="Center"/>
+			</combo-chart>
+		</div>
 	</div>
 </div>
