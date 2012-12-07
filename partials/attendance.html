@@ -1,11 +1,11 @@
 <div class="span12">
 	<form class="form-inline">
 		<label>Select Center: </label>
-		<select class="span3" ng-model="center" ng-options="c for c in centers">
+		<select class="span3" ng-model="center" ng-options="c for c in centers" title="Select the center from list">
 		</select>
 		<img ng-src="resources/images/ajax-loader.gif" ng-show="isLoading"/>
 		<div class="help-inline pull-right">
-			<a class="btn btn-small" ng-click="print('all')"><i class="icon-print"></i>Print all</a>
+			<a class="btn btn-small" ng-click="print('all')" title="Print everything"><i class="icon-print"></i>Print all</a>
 		</div>
 	</form>
 </div>
@@ -13,7 +13,7 @@
 	<div class="span12" id="pane1">
 		<legend ng-show="center">
 			Week by Week Attendance for this term at {{center}}
-			<a class="btn btn-small" ng-click="print('pane1')"><i class="icon-print"></i></a>
+			<a class="btn btn-small" ng-click="print('pane1')" title="Print chart"><i class="icon-print"></i></a>
 		</legend>
 		<div class="help-inline">
 			Click the bar chart to view weekly data
@@ -27,7 +27,7 @@
 			<div class="span4" id="pane2">
 				<legend>
 					Enrollment Data for Week {{week}}
-					<a class="btn btn-small" ng-click="print('pane2')"><i class="icon-print"></i></a>
+					<a class="btn btn-small" ng-click="print('pane2')" title="Print chart"><i class="icon-print"></i></a>
 				</legend>
 				<pie-chart height="400" width="400"/>
 				</pie-chart>
@@ -35,7 +35,7 @@
 			<div class="span8" id="pane3">
 				<legend>
 					Weekly Attendance for Week {{week}}
-					<a class="btn btn-small" ng-click="print('pane3')"><i class="icon-print"></i></a>
+					<a class="btn btn-small" ng-click="print('pane3')" title="Print chart"><i class="icon-print"></i></a>
 				</legend>
 			<combo-chart rows="data" model="comboData" height="400" width="700"
 				vaxis1="Attendance %" vaxis2="Enrollment" haxis="Center"/>
