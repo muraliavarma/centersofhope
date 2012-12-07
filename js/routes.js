@@ -12,6 +12,9 @@ app.config(function($routeProvider) {
 		when('/admin', {
 			templateUrl: 'partials/admin.html', controller: AdminCtrl
 		}).
+		when('/help', {
+			templateUrl: 'partials/help.html'
+		}).
 		otherwise({
 			redirectTo: '/login', templateUrl: 'partials/login.html', controller: LoginCtrl
 		});
